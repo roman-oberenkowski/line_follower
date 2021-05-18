@@ -12,7 +12,6 @@ int tab[2][2];
 void set_motor_speed(int lr,int speed);
 
 void setup() {
-  // put your setup code here, to run once:
   pinMode(RIGHT_B,OUTPUT);
   pinMode(RIGHT_F,OUTPUT);
   pinMode(LEFT_B,OUTPUT);
@@ -23,19 +22,13 @@ void setup() {
   tab[RIGHT][BACKWARD]=RIGHT_B;
   tab[RIGHT][FORWARD]=RIGHT_F;
   Serial.begin(9600);
-  Serial.println("BOOTEDUP");
 }
 
 
 void loop() {
-  // put your main code here, to run repeatedly:
   while (Serial.available() > 0) {
     int left = Serial.parseInt();
-    //Serial.print("got left");
-    //Serial.println(left);
     int right = Serial.parseInt();
-    //Serial.print("got right");
-    //Serial.println(right);
     if (Serial.read() == '\n') {
       PORTB ^= (1<<PB5);
       int lspeed = scale(left);
